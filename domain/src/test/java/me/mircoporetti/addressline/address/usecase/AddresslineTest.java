@@ -53,7 +53,7 @@ class AddresslineTest {
     }
 
     @Test
-    void twoWordStreetBeforeAnAlphanumericNumber() {
+    void threeWordStreetBeforeAnAlphanumericNumber() {
         InlineAddressRequest givenAddress = new InlineAddressRequest("Auf der Vogelwiese 23 b");
         Address result = underTest.execute(givenAddress);
 
