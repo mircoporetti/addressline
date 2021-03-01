@@ -21,7 +21,7 @@ class AddresslineTest {
     void notValidInlineAddress() {
         InlineAddressRequest givenAddress = new InlineAddressRequest("aSingleWordAddress");
 
-        assertThrows(IllegalArgumentException.class, () -> underTest.execute(givenAddress));
+        assertThrows(NotValidInlineAddressException.class, () -> underTest.execute(givenAddress));
     }
 
     @Test

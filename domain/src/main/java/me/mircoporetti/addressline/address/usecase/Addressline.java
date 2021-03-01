@@ -32,7 +32,7 @@ public class Addressline implements AddresslineUseCase {
             }
             return address;
         } else {
-            throw new IllegalArgumentException("The address: " + inlineAddressRequest.getAddress() + " can't be an address");
+            throw new NotValidInlineAddressException("The address: " + inlineAddressRequest.getAddress() + " can't be an address");
         }
     }
 }
