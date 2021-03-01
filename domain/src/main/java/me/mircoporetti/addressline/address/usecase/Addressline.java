@@ -9,16 +9,24 @@ public class Addressline implements AddresslineUseCase {
 
     @Override
     public Address execute(InlineAddressRequest inlineAddressRequest) {
+        String inlineAddress = inlineAddressRequest.getAddress();
+        Address address = null;
 
-        Pattern pattern = Pattern.compile("(.+?)(\\d+.+|\\d+)");
-        Matcher matcher = pattern.matcher(inlineAddressRequest.getAddress());
-
-        if(matcher.find()){
-            String street = matcher.group(1).trim();
-            String houseNumber = matcher.group(2);
-            return new Address(street, houseNumber);
+        if(Pattern.compile("(.+?)(\\d+.+|\\d+)").matcher(inlineAddress).find()){
+            Matcher matcher = Pattern.compile("(.+?)(\\d+.+|\\d+)").matcher(inlineAddress);
+            if(matcher.find()) {
+                String street = matcher.group(1).trim();
+                String houseNumber = matcher.group(2);
+                address = new Address(street, houseNumber);
+            }
+        }else if(Pattern.compile("(\\d+)(.+)").matcher(inlineAddress).find()){
+            Matcher matcher = Pattern.compile("(\\d+)(.+)").matcher(inlineAddress);
+            if(matcher.find()) {
+                String houseNumber = matcher.group(1);
+                String street = matcher.group(2).replaceAll(",", "").trim();
+                address = new Address(street, houseNumber);
+            }
         }
-
-        else return null;
+        return address;
     }
 }

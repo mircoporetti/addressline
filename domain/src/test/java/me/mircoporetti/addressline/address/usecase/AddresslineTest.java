@@ -60,4 +60,13 @@ class AddresslineTest {
         Address expectedAddress = new Address("Auf der Vogelwiese", "23 b");
         assertThat(result, is(expectedAddress));
     }
+
+    @Test
+    void numberBeforeStreet() {
+        InlineAddressRequest givenAddress = new InlineAddressRequest("4, rue de la revolution");
+        Address result = underTest.execute(givenAddress);
+
+        Address expectedAddress = new Address("rue de la revolution", "4");
+        assertThat(result, is(expectedAddress));
+    }
 }
