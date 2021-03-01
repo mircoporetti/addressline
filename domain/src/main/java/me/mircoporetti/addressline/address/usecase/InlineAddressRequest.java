@@ -10,4 +10,8 @@ public class InlineAddressRequest {
     public String getAddress() {
         return address;
     }
+
+    public boolean couldBeAValidAddress() {
+        return address.split(" ").length > 1;
+    }
 }

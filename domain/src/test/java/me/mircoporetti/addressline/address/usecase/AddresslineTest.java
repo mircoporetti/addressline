@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddresslineTest {
 
@@ -14,6 +15,13 @@ class AddresslineTest {
     @BeforeEach
     void setUp() {
         underTest = new Addressline();
+    }
+
+    @Test
+    void notValidInlineAddress() {
+        InlineAddressRequest givenAddress = new InlineAddressRequest("aSingleWordAddress");
+
+        assertThrows(IllegalArgumentException.class, () -> underTest.execute(givenAddress));
     }
 
     @Test

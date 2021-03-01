@@ -11,24 +11,28 @@ public class Addressline implements AddresslineUseCase {
 
     @Override
     public Address execute(InlineAddressRequest inlineAddressRequest) {
-        String inlineAddress = inlineAddressRequest.getAddress();
-        Address address = null;
+        if (inlineAddressRequest.couldBeAValidAddress()) {
+            String inlineAddress = inlineAddressRequest.getAddress();
+            Address address = null;
 
-        if(STREET_BEFORE_HOUSE_NUMBER.matches(inlineAddress)){
-            Matcher matcher = Pattern.compile("(.+?)(\\d+.+|\\d+)").matcher(inlineAddress);
-            if(matcher.find()) {
-                String street = matcher.group(1).trim();
-                String houseNumber = matcher.group(2);
-                address = new Address(street, houseNumber);
+            if (STREET_BEFORE_HOUSE_NUMBER.matches(inlineAddress)) {
+                Matcher matcher = Pattern.compile("(.+?)(\\d+.+|\\d+)").matcher(inlineAddress);
+                if (matcher.find()) {
+                    String street = matcher.group(1).trim();
+                    String houseNumber = matcher.group(2);
+                    address = new Address(street, houseNumber);
+                }
+            } else if (HOUSE_NUMBER_BEFORE_STREET.matches(inlineAddress)) {
+                Matcher matcher = Pattern.compile("(\\d+)(.+)").matcher(inlineAddress);
+                if (matcher.find()) {
+                    String houseNumber = matcher.group(1);
+                    String street = matcher.group(2).replaceAll(",", "").trim();
+                    address = new Address(street, houseNumber);
+                }
             }
-        }else if(HOUSE_NUMBER_BEFORE_STREET.matches(inlineAddress)){
-            Matcher matcher = Pattern.compile("(\\d+)(.+)").matcher(inlineAddress);
-            if(matcher.find()) {
-                String houseNumber = matcher.group(1);
-                String street = matcher.group(2).replaceAll(",", "").trim();
-                address = new Address(street, houseNumber);
-            }
+            return address;
+        } else {
+            throw new IllegalArgumentException("The address: " + inlineAddressRequest.getAddress() + " can't be an address");
         }
-        return address;
     }
 }
