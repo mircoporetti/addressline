@@ -42,4 +42,22 @@ class AddresslineTest {
         Address expectedAddress = new Address("Blaufeldweg", "123B");
         assertThat(result, is(expectedAddress));
     }
+
+    @Test
+    void twoWordStreetBeforeANumber() {
+        InlineAddressRequest givenAddress = new InlineAddressRequest("Am Bächle 23");
+        Address result = underTest.execute(givenAddress);
+
+        Address expectedAddress = new Address("Am Bächle", "23");
+        assertThat(result, is(expectedAddress));
+    }
+
+    @Test
+    void twoWordStreetBeforeAnAlphanumericNumber() {
+        InlineAddressRequest givenAddress = new InlineAddressRequest("Auf der Vogelwiese 23 b");
+        Address result = underTest.execute(givenAddress);
+
+        Address expectedAddress = new Address("Auf der Vogelwiese", "23 b");
+        assertThat(result, is(expectedAddress));
+    }
 }

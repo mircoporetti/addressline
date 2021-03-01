@@ -31,4 +31,12 @@ public class Address {
     public int hashCode() {
         return Objects.hash(street, houseNumber);
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "street='" + street + '\'' +
+                ", houseNumber='" + houseNumber + '\'' +
+                '}';
+    }
 }
