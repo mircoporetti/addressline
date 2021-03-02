@@ -6,7 +6,8 @@ import java.util.regex.Pattern;
 public enum InlineAddressRule {
 
     STREET_BEFORE_HOUSE_NUMBER(Pattern.compile("(.+?)(\\d+.+|\\d+)")),
-    HOUSE_NUMBER_BEFORE_STREET(Pattern.compile("(\\d+)(.+)"));
+    HOUSE_NUMBER_BEFORE_STREET(Pattern.compile("(\\d+)(.+)")),
+    STREET_BEFORE_PREFIXED_HOUSE_NUMBER(Pattern.compile("(.+?)(No \\d+|no \\d+)"));
 
     private final Pattern regex;
 
