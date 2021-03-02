@@ -3,7 +3,6 @@ package me.mircoporetti.addressline.address;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import me.mircoporetti.addressline.address.entity.Address;
 import me.mircoporetti.addressline.address.usecase.AddresslineUseCase;
-import me.mircoporetti.addressline.address.usecase.InlineAddressRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -29,15 +28,15 @@ class AddressPresenterTest {
 
     @Test
     void notValidAddressFormat() {
-        assertThrows(AddressFormatException.class, () -> underTest.getJsonAddress(new AddressMessageRequest(null)));
+        assertThrows(AddressFormatException.class, () -> underTest.parseAddress(new AddressMessageRequest(null)));
     }
 
     @Test
-    void dsf() throws JsonProcessingException {
+    void parseAddress() throws JsonProcessingException {
         AddressMessageRequest givenAddress = new AddressMessageRequest("anAddress");
         doReturn(new Address("aStreet", "anHouseNumber")).when(addresslineUseCase).execute(any());
 
-        String result = underTest.getJsonAddress(givenAddress);
+        String result = underTest.parseAddress(givenAddress);
 
         assertThat(result, is("{\"street\":\"aStreet\",\"houseNumber\":\"anHouseNumber\"}"));
 

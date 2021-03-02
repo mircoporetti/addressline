@@ -13,7 +13,7 @@ public class AddressPresenter {
         this.addresslineUseCase = addresslineUseCase;
     }
 
-    public String getJsonAddress(AddressMessageRequest addressMessageRequest) throws JsonProcessingException {
+    public String parseAddress(AddressMessageRequest addressMessageRequest) throws JsonProcessingException {
         if(addressMessageRequest.validate()){
             Address address = addresslineUseCase.execute(new InlineAddressRequest(addressMessageRequest.getAddress()));
             ObjectMapper objectMapper = new ObjectMapper();
