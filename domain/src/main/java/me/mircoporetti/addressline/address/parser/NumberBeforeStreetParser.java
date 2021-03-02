@@ -14,6 +14,6 @@ public class NumberBeforeStreetParser implements Parser {
         Matcher matcher = HOUSE_NUMBER_BEFORE_STREET.getMatcherFor(address.getAddress());
         if(matcher.matches())
             return new Address(matcher.group(2).replaceAll(",","").trim(), matcher.group(1));
-        else return null;
+        else throw new NotParsableInlineAddressException("The address " + address.getAddress() + " is not parsable with rule STREET_BEFORE_PREFIXED_HOUSE_NUMBER");
     }
 }

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class NumberBeforeStreetParserTest {
 
@@ -34,5 +35,12 @@ class NumberBeforeStreetParserTest {
 
         Address result = underTest.parse(givenInlineAddress);
         assertThat(result, is(expected));
+    }
+
+    @Test
+    void notParsableForParserRule() {
+        InlineAddressRequest givenInlineAddress = new InlineAddressRequest("wrongAddress 1");
+
+        assertThrows(NotParsableInlineAddressException.class, () -> underTest.parse(givenInlineAddress));
     }
 }

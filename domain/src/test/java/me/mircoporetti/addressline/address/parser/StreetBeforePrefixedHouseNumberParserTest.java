@@ -27,4 +27,11 @@ class StreetBeforePrefixedHouseNumberParserTest {
         Address result = underTest.parse(givenInlineAddress);
         assertThat(result, is(expected));
     }
+
+    @Test
+    void notParsableForParserRule() {
+        InlineAddressRequest givenInlineAddress = new InlineAddressRequest("wrongAddress 1");
+
+        assertThrows(NotParsableInlineAddressException.class, () -> underTest.parse(givenInlineAddress));
+    }
 }
