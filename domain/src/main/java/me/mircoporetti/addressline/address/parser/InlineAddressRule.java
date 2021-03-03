@@ -7,7 +7,7 @@ public enum InlineAddressRule {
 
     STREET_BEFORE_HOUSE_NUMBER(Pattern.compile("(.+?)(\\d+.+|\\d+)")),
     HOUSE_NUMBER_BEFORE_STREET(Pattern.compile("(\\d+)(.+)")),
-    STREET_BEFORE_PREFIXED_HOUSE_NUMBER(Pattern.compile("(?i)(.+?)(No \\d+)"));
+    STREET_BEFORE_PREFIXED_HOUSE_NUMBER(Pattern.compile("(?i)(.+?)( No \\d+)"));
 
     private final Pattern regex;
 

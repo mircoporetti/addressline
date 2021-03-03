@@ -13,7 +13,7 @@ public class StreetBeforePrefixedHouseNumberParser implements Parser {
     public Address parse(InlineAddressRequest address) {
         Matcher matcher = STREET_BEFORE_PREFIXED_HOUSE_NUMBER.getMatcherFor(address.getAddress());
         if(matcher.matches())
-            return new Address(matcher.group(1).trim(), matcher.group(2));
+            return new Address(matcher.group(1).trim(), matcher.group(2).trim());
         else throw new NotParsableInlineAddressException("The address " + address.getAddress() + " is not parsable with rule STREET_BEFORE_PREFIXED_HOUSE_NUMBER");
     }
 }
