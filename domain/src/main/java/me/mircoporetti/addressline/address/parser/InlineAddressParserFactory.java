@@ -14,10 +14,10 @@ public class InlineAddressParserFactory implements ParserFactory {
         String inlineAddress = address.getAddress();
         if(HOUSE_NUMBER_BEFORE_STREET.matches(inlineAddress)){
             return new NumberBeforeStreetParser();
-        }else if(STREET_BEFORE_HOUSE_NUMBER.matches(inlineAddress)){
-            return new StreetBeforeNumberParser();
         }else if(STREET_BEFORE_PREFIXED_HOUSE_NUMBER.matches(inlineAddress)){
             return new StreetBeforePrefixedHouseNumberParser();
+        }else if(STREET_BEFORE_HOUSE_NUMBER.matches(inlineAddress)){
+            return new StreetBeforeNumberParser();
         }else{
             throw new NotSupportedInlineAddressTypeException("Inline address " + inlineAddress + " format is not supported");
         }

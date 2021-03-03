@@ -89,4 +89,14 @@ class InlineAddressParserFactoryTest {
 
         assertThat(result, is(instanceOf(StreetBeforeNumberParser.class)));
     }
+
+
+    @Test
+    void StreetBeforePrefixedHouseNumber_returnedAStreetBeforeNumberParser() {
+        InlineAddressRequest inlineAddressRequest = new InlineAddressRequest("Calle 39 No 1540");
+
+        Parser result = underTest.getParserFor(inlineAddressRequest);
+
+        assertThat(result, is(instanceOf(StreetBeforePrefixedHouseNumberParser.class)));
+    }
 }
