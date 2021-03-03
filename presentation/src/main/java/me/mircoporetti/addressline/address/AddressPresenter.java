@@ -8,18 +8,19 @@ import me.mircoporetti.addressline.address.usecase.InlineAddressRequest;
 
 public class AddressPresenter {
     private final AddresslineUseCase addresslineUseCase;
+    private final ObjectMapper objectMapper;
 
-    public AddressPresenter(AddresslineUseCase addresslineUseCase) {
+    public AddressPresenter(AddresslineUseCase addresslineUseCase, ObjectMapper objectMapper) {
         this.addresslineUseCase = addresslineUseCase;
+        this.objectMapper = objectMapper;
     }
 
     public String parseAddress(AddressMessageRequest addressMessageRequest) throws JsonProcessingException {
         if(addressMessageRequest.validate()){
             Address address = addresslineUseCase.execute(new InlineAddressRequest(addressMessageRequest.getAddress()));
-            ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.writeValueAsString(address);
         }else{
-            throw new AddressFormatException("The input " + addressMessageRequest.getAddress() + " is not a valid format");
+            throw new AddressFormatException("The input " + addressMessageRequest.getAddress() + " is not in a valid format");
         }
     }
 }

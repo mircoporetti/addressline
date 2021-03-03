@@ -11,6 +11,7 @@
     <modules>
         <module>domain</module>
         <module>presentation</module>
+        <module>addressline-application</module>
     </modules>
 
     <properties>

@@ -1,6 +1,7 @@
 package me.mircoporetti.addressline.address;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import me.mircoporetti.addressline.address.entity.Address;
 import me.mircoporetti.addressline.address.usecase.AddresslineUseCase;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,14 +17,14 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 class AddressPresenterTest {
     @Mock
-    AddresslineUseCase addresslineUseCase;
+    private AddresslineUseCase addresslineUseCase;
 
     private AddressPresenter underTest;
 
     @BeforeEach
     void setUp() {
         initMocks(this);
-        underTest = new AddressPresenter(addresslineUseCase);
+        underTest = new AddressPresenter(addresslineUseCase, new ObjectMapper());
     }
 
     @Test
