@@ -6,7 +6,7 @@ import me.mircoporetti.addressline.address.AddressPresenter;
 import me.mircoporetti.addressline.address.parser.InlineAddressParserFactory;
 import me.mircoporetti.addressline.address.usecase.Addressline;
 import me.mircoporetti.addressline.address.usecase.AddresslineUseCase;
-import me.mircoporetti.addressline.address.usecase.port.ParserFactory;
+import me.mircoporetti.addressline.address.usecase.ParserFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;

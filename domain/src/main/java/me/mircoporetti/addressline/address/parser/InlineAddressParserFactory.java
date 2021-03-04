@@ -1,8 +1,8 @@
 package me.mircoporetti.addressline.address.parser;
 
 import me.mircoporetti.addressline.address.parser.exception.NotSupportedInlineAddressTypeException;
-import me.mircoporetti.addressline.address.usecase.port.Parser;
-import me.mircoporetti.addressline.address.usecase.port.ParserFactory;
+import me.mircoporetti.addressline.address.usecase.Parser;
+import me.mircoporetti.addressline.address.usecase.ParserFactory;
 import me.mircoporetti.addressline.address.usecase.InlineAddressRequest;
 
 import static me.mircoporetti.addressline.address.parser.InlineAddressRule.*;

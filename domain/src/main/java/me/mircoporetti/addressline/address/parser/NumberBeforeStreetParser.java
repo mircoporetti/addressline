@@ -2,7 +2,7 @@ package me.mircoporetti.addressline.address.parser;
 
 import me.mircoporetti.addressline.address.entity.Address;
 import me.mircoporetti.addressline.address.parser.exception.NotParsableInlineAddressException;
-import me.mircoporetti.addressline.address.usecase.port.Parser;
+import me.mircoporetti.addressline.address.usecase.Parser;
 import me.mircoporetti.addressline.address.usecase.InlineAddressRequest;
 
 import java.util.regex.Matcher;
