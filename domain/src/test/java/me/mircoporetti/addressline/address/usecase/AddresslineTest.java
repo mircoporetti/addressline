@@ -1,6 +1,7 @@
 package me.mircoporetti.addressline.address.usecase;
 
 import me.mircoporetti.addressline.address.entity.Address;
+import me.mircoporetti.addressline.address.usecase.exception.NotValidInlineAddressException;
 import me.mircoporetti.addressline.address.usecase.port.Parser;
 import me.mircoporetti.addressline.address.usecase.port.ParserFactory;
 import org.junit.jupiter.api.BeforeEach;
